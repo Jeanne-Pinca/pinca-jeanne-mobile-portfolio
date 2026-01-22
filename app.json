@@ -1,17 +1,18 @@
 {
   "expo": {
-    "name": "TestApp2",
-    "slug": "TestApp2",
+    "name": "pinca-jeanne-mobile-portfolio",
+    "slug": "pinca-jeanne-mobile-portfolio",
     "version": "1.0.0",
+    "scheme": "pinca-jeanne-mobile-portfolio",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "platforms": ["ios", "android", "web"],
     "ios": {
       "supportsTablet": true
     },
@@ -23,6 +24,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [],
+    "experiments": {
+      "typedRoutes": false
     }
   }
 }
