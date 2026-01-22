@@ -7,7 +7,8 @@ export const styles = StyleSheet.create({
     },
     headerText: {
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        fontFamily: 'Magic Retro'
     },
     mainContainer: {
         flex: 1,
