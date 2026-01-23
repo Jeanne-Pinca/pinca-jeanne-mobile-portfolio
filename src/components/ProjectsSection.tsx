@@ -8,6 +8,7 @@ interface Project {
   url?: string;
   technologies?: string[];
   image?: string;
+  date?: string;
 }
 
 interface Theme {
@@ -65,7 +66,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ codingProjects, artPr
           <TouchableOpacity
             style={[
               styles.toggleButton,
-              activeTab === 'coding' && styles.toggleButtonActiveCoding,
+              { backgroundColor: theme.card },
+              activeTab === 'coding' && { backgroundColor: '#ffbccd' },
             ]}
             onPress={() => handleTabSwitch('coding')}
           >
@@ -77,7 +79,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ codingProjects, artPr
           <TouchableOpacity
             style={[
               styles.toggleButton,
-              activeTab === 'art' && styles.toggleButtonActiveArt,
+              { backgroundColor: theme.card },
+              activeTab === 'art' && { backgroundColor: '#ffbccd' },
             ]}
             onPress={() => handleTabSwitch('art')}
           >
@@ -107,7 +110,14 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ codingProjects, artPr
               />
             )}
             
-            <Text style={[styles.projectName, { color: theme.text }]}>{item.name}</Text>
+            <View style={styles.projectNameContainer}>
+              <Text style={[styles.projectName, { color: theme.text }]}>{item.name}</Text>
+              {item.date && (
+                <View style={styles.dateBadge}>
+                  <Text style={styles.dateText}>{item.date}</Text>
+                </View>
+              )}
+            </View>
             <Text style={[styles.description, { color: theme.textSecondary }]}>{item.description}</Text>
             
             {isExpanded && (
@@ -163,6 +173,9 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ codingProjects, artPr
               maximumZoomScale={3}
               minimumZoomScale={1}
               showsVerticalScrollIndicator={false}
+              scrollEnabled={true}
+              bouncesZoom={true}
+              pinchGestureEnabled={true}
             >
               {fullScreenImage && (
                 <Image 
@@ -213,18 +226,11 @@ const styles = StyleSheet.create({
     minWidth: 45,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ffffff',
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
-  },
-  toggleButtonActiveCoding: {
-    backgroundColor: '#ffbccd',
-  },
-  toggleButtonActiveArt: {
-    backgroundColor: '#ffbccd',
   },
   toggleText: {
     fontSize: 20,
@@ -252,7 +258,24 @@ const styles = StyleSheet.create({
   projectName: {
     fontSize: 17,
     fontWeight: 'bold',
+    marginBottom: 2,
+  },
+  projectNameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginBottom: 4,
+  },
+  dateBadge: {
+    backgroundColor: '#ffbccd',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 12,
+  },
+  dateText: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#000',
   },
   description: {
     lineHeight: 20,

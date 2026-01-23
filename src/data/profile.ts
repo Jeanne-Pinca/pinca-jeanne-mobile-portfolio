@@ -18,7 +18,8 @@ export const PROFILE = {
       description: 'A 2D platformer game that follows the story of a lighthouse keeper Lumen in her adventures to restore light to her island.',
       url: 'https://github.com/Jeanne-Pinca/LUMEN',
       technologies: ['C#', 'ShaderLab', 'HLSL'],
-      image: 'https://placeholder-image-url.com/lumen.jpg'
+      image: 'https://placeholder-image-url.com/lumen.jpg',
+      date: '2025'
     },
     { 
       id: '2', 
@@ -26,7 +27,8 @@ export const PROFILE = {
       description: 'A web game on taking care of your shining companion.',
       url: 'https://github.com/MariahAndrea/final-project-group4-webdevt-frontend',
       technologies: ['JavaScript', 'CSS', 'HTML'],
-      image: 'https://placeholder-image-url.com/starmu.jpg'
+      image: 'https://placeholder-image-url.com/starmu.jpg',
+      date: '2025'
     },
     { 
       id: '3', 
@@ -34,7 +36,8 @@ export const PROFILE = {
       description: 'A simple text-based web game inspired by Filipino folklore.',
       url: 'https://midterm-project-n64v-itwq1qyqs-jeannes-projects-cb68f724.vercel.app/',
       technologies: ['JavaScript', 'CSS', 'HTML'],
-      image: 'https://placeholder-image-url.com/aswang.jpg'
+      image: 'https://placeholder-image-url.com/aswang.jpg',
+      date: '2025'
     },
   ],
   artProjects: [
@@ -43,22 +46,24 @@ export const PROFILE = {
       name: 'The Moon Maiden', 
       description: 'Recent Artwork - Digital Painting inspired by Genshin Impact\'s character, Columbina.',
       url: 'https://your-art-portfolio-url.com',
-      image: 'https://64.media.tumblr.com/a432c5914fcbff3ed0a2026ff202a9ad/cc5851f138221032-64/s2048x3072/b789e5e5eb35326355784e8da2a1b7c2f3e2b1a3.jpg'
+      image: 'https://64.media.tumblr.com/a432c5914fcbff3ed0a2026ff202a9ad/cc5851f138221032-64/s2048x3072/b789e5e5eb35326355784e8da2a1b7c2f3e2b1a3.jpg',
+      date: '2026'
     },
     { 
       id: 'art2', 
       name: 'Deer Diary', 
       description: 'A For-profit zine featuring original illustrations and short stories about Heizou from Genshin Impact, Collaborated with other illustrators, layout artists, and writers.',
       url: 'https://deerzou-zine.carrd.co/',
-
-      image: 'https://pbs.twimg.com/media/GLSchsyWIAA2U6A?format=jpg&name=large'
+      image: 'https://pbs.twimg.com/media/GLSchsyWIAA2U6A?format=jpg&name=large',
+      date: '2023 - 2024'
     },
     { 
       id: 'art3', 
       name: 'Character Design Exploration', 
       description: 'Character Designs for DeerZou',
       url: 'https://your-art-portfolio-url.com',
-      image: 'https://i.imgur.com/snyJsaD.png'
+      image: 'https://i.imgur.com/snyJsaD.png',
+      date: '2023 - 2024'
     },
   ],
 };

@@ -201,7 +201,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills, artSkills, theme 
               key={`${skill}-${index}`}
               style={[styles.skillBadge, { backgroundColor: '#ffbccd' }]}
             >
-              <Text style={[styles.skillText, { color: theme.text }]}>{skill}</Text>
+              <Text style={[styles.skillText, { color: '#000' }]}>{skill}</Text>
             </View>
           ))}
         </ScrollView>
@@ -228,7 +228,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills, artSkills, theme 
                 key={`art-${skill}-${index}`}
                 style={[styles.skillBadge, { backgroundColor: '#ffd2d6' }]}
               >
-                <Text style={[styles.skillText, { color: theme.text }]}>{skill}</Text>
+                <Text style={[styles.skillText, { color: '#000' }]}>{skill}</Text>
               </View>
             ))}
           </ScrollView>
