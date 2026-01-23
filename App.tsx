@@ -14,27 +14,7 @@ import ProjectsSection from './src/components/ProjectsSection';
 import { PROFILE } from './src/data/profile';
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
   const { theme, darkMode, setDarkMode } = useTheme();
-
-  useEffect(() => {
-    async function loadFonts() {
-      await Font.loadAsync({
-        'Magic Retro': require('./assets/font/Magic Retro.ttf'),
-      });
-      setFontsLoaded(true);
-    }
-    loadFonts();
-  }, []);
-
-  if (!fontsLoaded) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.background }}>
-        <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} backgroundColor={theme.background} />
-        <Text style={{ color: theme.text }}>Loading...</Text>
-      </View>
-    );
-  }
 
   const handleLink = (url: string) => {
     Linking.openURL(url);
@@ -47,6 +27,7 @@ export default function App() {
       component: (
         <ProfileData
           name={PROFILE.name}
+          realName="Jeanne Pinca"
           bio={PROFILE.bio}
           avatar={PROFILE.avatar}
           email={PROFILE.email}

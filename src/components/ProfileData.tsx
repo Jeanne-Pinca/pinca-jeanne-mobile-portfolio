@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, ImageSourcePropType } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, StyleSheet, ImageSourcePropType, TouchableOpacity } from 'react-native';
 import ContactSection from './ContactSection';
 
 interface SocialLink {
@@ -10,6 +10,7 @@ interface SocialLink {
 
 interface ProfileDataProps {
   name: string;
+  realName?: string;
   bio: string;
   avatar: ImageSourcePropType | string;
   email?: string;
@@ -24,14 +25,32 @@ interface ProfileDataProps {
   };
 }
 
-const ProfileData: React.FC<ProfileDataProps> = ({ name, bio, avatar, email, social = [], handleLink, theme }) => {
+const ProfileData: React.FC<ProfileDataProps> = ({ name, realName, bio, avatar, email, social = [], handleLink, theme }) => {
   const avatarSource = typeof avatar === 'string' ? { uri: avatar } : avatar;
+  const [showRealName, setShowRealName] = useState(false);
+  const displayName = showRealName && realName ? realName : name;
 
   return (
     <View style={[styles.container, { backgroundColor: theme.card }]}>
       <Image source={avatarSource} style={styles.avatar} />
       <View style={styles.infoContainer}>
-        <Text style={[styles.name, { color: theme.text }]}>{name}</Text>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.name, { color: theme.text }]}>{displayName}</Text>
+          {realName && (
+            <TouchableOpacity
+              style={[styles.toggleSwitch, { borderColor: theme.text }]}
+              onPress={() => setShowRealName(!showRealName)}
+            >
+              <Text style={[styles.toggleIcon, { color: theme.text }]}>{showRealName ? '→' : '←'}</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+        
+        {/* Badge */}
+        <View style={[styles.badge, { backgroundColor: '#ffbccd' }]}>
+          <Text style={[styles.badgeText, { color: '#000' }]}>Game Developer | Web Design | Artist</Text>
+        </View>
+
         <Text style={[styles.bio, { color: theme.textSecondary }]}>{bio}</Text>
 
         {/* render ContactSection inside profile */}
@@ -73,10 +92,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
+  nameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginBottom: 4,
+  },
   name: {
     fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 4,
+  },
+  toggleSwitch: {
+    width: 22,
+    height: 22,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    opacity: 0.3,
+  },
+  toggleIcon: {
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   bio: {
     fontSize: 18,
@@ -85,6 +123,17 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     padding: 4,
     marginTop: 12,
+  },
+  badge: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 16,
+    marginVertical: 12,
+  },
+  badgeText: {
+    fontSize: 12,
+    fontWeight: '600',
+    textAlign: 'center',
   },
 });
 
