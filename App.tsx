@@ -1,7 +1,10 @@
 import * as Font from 'expo-font';
 import React, { useEffect, useState } from 'react';
-import { Linking, View, FlatList, StatusBar, SafeAreaView, Platform, Text } from 'react-native';
+import { Linking, View, FlatList, StatusBar, Platform, Text, Dimensions } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from './src/hooks/useTheme';
+
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 import AnimatedGridBackground from './src/components/AnimatedGridBackground';
 import ThemeToggle from './src/components/ThemeToggle';
 import ProfileData from './src/components/ProfileData';
@@ -53,8 +56,8 @@ export default function App() {
         />
       ),
     },
-    { id: 'skills', component: <SkillsSection skills={PROFILE.skills} theme={theme} /> },
-    { id: 'projects', component: <ProjectsSection projects={PROFILE.projects} theme={theme} /> },
+    { id: 'skills', component: <SkillsSection skills={PROFILE.skills} artSkills={PROFILE.artSkills} theme={theme} /> },
+    { id: 'projects', component: <ProjectsSection codingProjects={PROFILE.codingProjects} artProjects={PROFILE.artProjects} theme={theme} /> },
   ];
 
   return (
@@ -63,6 +66,22 @@ export default function App() {
       <StatusBar
         barStyle={darkMode ? 'light-content' : 'dark-content'}
         backgroundColor={theme.background}
+        translucent={true}
+      />
+
+      {/* Gradient overlay below status bar */}
+      <LinearGradient
+        colors={[theme.background, `${theme.background}Ff`, `${theme.background}CC`, `${theme.background}80`, `${theme.background}00`]}
+        locations={[0.8, 0.75, 0.85, 0.9, 1]}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 50,
+          zIndex: 2,
+        }}
+        pointerEvents="none"
       />
 
       {/* Floating toggle button OUTSIDE SafeAreaView */}
@@ -78,16 +97,18 @@ export default function App() {
         <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} theme={theme} />
       </View>
 
-      {/* Only FlatList is inside SafeAreaView */}
-      <SafeAreaView style={{ flex: 1 }}>
-        <FlatList
-          data={sections}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => item.component}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ padding: 20, paddingBottom: 0 }}
-        />
-      </SafeAreaView>
+      {/* FlatList */}
+      <FlatList
+        data={sections}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item, index }) => (
+          <View style={index === 0 ? { minHeight: SCREEN_HEIGHT, justifyContent: 'center', paddingHorizontal: 20 } : { paddingHorizontal: 20 }}>
+            {item.component}
+          </View>
+        )}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingTop: 50, paddingBottom: 20 }}
+      />
     </View>
   );
 }
